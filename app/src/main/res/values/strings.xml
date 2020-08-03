@@ -6,4 +6,6 @@
     <string name="default_country">BR</string>
     <string name="no_internet_connection_error_message">Sem conexão com a internet</string>
     <string name="server_error_message">Ocorreu um erro no servidor, por favor tente novamente</string>
+    <string name="lang">pt</string>
+    <string name="city_not_found">Nõ foi encontrad a cidade</string>
 </resources>

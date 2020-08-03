@@ -3,7 +3,7 @@ package br.com.shogogan.uncannyweather.domain.weather.models
 import br.com.shogogan.uncannyweather.data.weather.dto.WeatherResponse
 
 data class WeatherModel(
-    val icon: String,
+    val icon: String?,
     val code: Int,
     val description: String
 ) {

@@ -1,9 +1,8 @@
 package br.com.shogogan.uncannyweather.data.weather.dto
 
-import br.com.shogogan.uncannyweather.domain.weather.models.ForecastModel
+import com.squareup.moshi.Json
 
 data class LocationResponse(
-    val cityName: String,
-    val timezone: String,
-    val data: List<ForecastResponse>
+    @Json(name = "city_name") val cityName: String,
+    @Json(name = "data") val data: List<ForecastResponse>
 )

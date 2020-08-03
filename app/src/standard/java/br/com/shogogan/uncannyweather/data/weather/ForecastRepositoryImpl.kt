@@ -16,7 +16,9 @@ class ForecastRepositoryImpl @Inject constructor(
     ): ResultWrapper<LocationModel> {
         return apiCall {
             val response = apiService.getDailyForecast(cityName, stateName, countryName)
-            LocationModel.from(response)
+            LocationModel.from(
+                response
+            )
         }
     }
 }

@@ -19,11 +19,13 @@ class DailyForecastUseCaseImpl @Inject constructor(
             emit(DailyForecastResponse.InFlight)
 
             val response =
-                when (val result = forecastRepository.getDailyForecast(cityName, stateName, countryName)){
+                when (val result =
+                    forecastRepository.getDailyForecast(cityName, stateName, countryName)) {
                     is ResultWrapper.Success -> DailyForecastResponse.Success(result.result)
                     is ResultWrapper.Error.Generic -> DailyForecastResponse.Error(result.message)
                     ResultWrapper.Error.Network -> DailyForecastResponse.Error(errorId = R.string.no_internet_connection_error_message)
                     ResultWrapper.Error.Server -> DailyForecastResponse.Error(errorId = R.string.server_error_message)
+                    ResultWrapper.Error.NotFound -> DailyForecastResponse.Error(errorId = R.string.city_not_found)
                     ResultWrapper.Abort -> DailyForecastResponse.Nothing
                 }
 

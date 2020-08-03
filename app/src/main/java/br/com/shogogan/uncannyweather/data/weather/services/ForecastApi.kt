@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface ForecastApi {
     @GET("forecast/daily")
-    fun getDailyForecast(
+    suspend fun getDailyForecast(
         @Query("city") cityName: String,
         @Query("state") stateName: String?,
         @Query("country") countryName: String

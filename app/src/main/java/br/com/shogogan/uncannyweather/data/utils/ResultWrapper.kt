@@ -6,6 +6,7 @@ sealed class ResultWrapper<out T> {
         data class Generic(var code: Int? = null, var message: String) : Error()
         object Network : Error()
         object Server : Error()
+        object NotFound : Error()
     }
     object Abort : ResultWrapper<Nothing>()
 }

@@ -4,6 +4,7 @@ import kotlinx.coroutines.CancellationException
 import retrofit2.HttpException
 import java.io.IOException
 import java.lang.Exception
+import java.lang.NullPointerException
 
 suspend fun <T> apiCall(
     method: suspend () -> T
@@ -19,7 +20,9 @@ suspend fun <T> apiCall(
         }
     } catch (e: CancellationException) {
         ResultWrapper.Abort
+    } catch (e: NullPointerException) {
+        ResultWrapper.Error.NotFound
     } catch (e: Exception) {
-        ResultWrapper.Error.Generic(message = e.localizedMessage ?: "")
+        ResultWrapper.Error.Generic(message = e.localizedMessage ?: "Error")
     }
 }
