@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Uncanny Weather</string>
+    <string name="city">Cidade</string>
+    <string name="state">Estado</string>
+    <string name="country">Pais (Sigla)</string>
+    <string name="default_country">BR</string>
+    <string name="no_internet_connection_error_message">Sem conexão com a internet</string>
+    <string name="server_error_message">Ocorreu um erro no servidor, por favor tente novamente</string>
+</resources>
