@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.map
 class WeatherForecastViewModel @ViewModelInject constructor(
     private val dailyForecastUseCase: DailyForecastUseCase
 ) : ViewModel() {
-    val cityName = MutableLiveData<String>()
-    val stateName = MutableLiveData<String>()
+    val cityName = MutableLiveData<String>("")
+    val stateName = MutableLiveData<String>("")
     val countryName = MutableLiveData<String>("BR")
 
     private var currentState = WeatherForecastState.initialState()
@@ -35,9 +35,9 @@ class WeatherForecastViewModel @ViewModelInject constructor(
             }
             WeatherForecastAction.FetchAction ->
                 dailyForecastUseCase.getForecast(
-                    cityName.value!!,
+                    cityName.value ?: "",
                     stateName.value,
-                    countryName.value!!
+                    countryName.value ?: ""
                 )
                     .map { mapToViewModelResult(it) }
                     .asLiveData()
@@ -74,7 +74,8 @@ class WeatherForecastViewModel @ViewModelInject constructor(
                 error = null
             )
             WeatherForecastResult.Abort -> currentState.copy(
-                isLoading = false
+                isLoading = false,
+                error = null
             )
             is WeatherForecastResult.Error -> currentState.copy(
                 isLoading = false,
@@ -82,7 +83,8 @@ class WeatherForecastViewModel @ViewModelInject constructor(
             )
             WeatherForecastResult.GoBackResult -> currentState.copy(
                 isLoading = false,
-                locationModel = null
+                locationModel = null,
+                error = null
             )
         }
         currentState

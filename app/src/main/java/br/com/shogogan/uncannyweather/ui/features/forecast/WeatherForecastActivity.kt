@@ -1,6 +1,7 @@
 package br.com.shogogan.uncannyweather.ui.features.forecast
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +39,9 @@ class WeatherForecastActivity : AppCompatActivity() {
             }
             AlertDialog.Builder(this)
                 .setMessage(message)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    //ignore
+                }
                 .show()
         }
     }

@@ -17,6 +17,10 @@ class DailyForecastUseCaseImpl @Inject constructor(
         countryName: String
     ): Flow<DailyForecastResponse> =
         flow {
+            if(cityName.isEmpty() || countryName.isEmpty()){
+                emit(DailyForecastResponse.Error(errorId = R.string.need_city_and_country))
+                return@flow
+            }
             SimpleIdlingResource.increment()
             emit(DailyForecastResponse.InFlight)
 
