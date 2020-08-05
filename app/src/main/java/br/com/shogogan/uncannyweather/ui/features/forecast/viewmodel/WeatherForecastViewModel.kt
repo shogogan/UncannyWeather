@@ -53,7 +53,7 @@ class WeatherForecastViewModel @ViewModelInject constructor(
         return when (response) {
             is DailyForecastResponse.Success -> WeatherForecastResult.FetchResult(response.result)
             DailyForecastResponse.InFlight -> WeatherForecastResult.InFlight
-            DailyForecastResponse.Nothing -> WeatherForecastResult.Nothing
+            DailyForecastResponse.Nothing -> WeatherForecastResult.Abort
             is DailyForecastResponse.Error -> WeatherForecastResult.Error(
                 response.error,
                 response.errorId
@@ -73,7 +73,9 @@ class WeatherForecastViewModel @ViewModelInject constructor(
                 locationModel = it.locationForecast,
                 error = null
             )
-            WeatherForecastResult.Nothing -> currentState
+            WeatherForecastResult.Abort -> currentState.copy(
+                isLoading = false
+            )
             is WeatherForecastResult.Error -> currentState.copy(
                 isLoading = false,
                 error = ErrorModel(it.error, it.errorId)

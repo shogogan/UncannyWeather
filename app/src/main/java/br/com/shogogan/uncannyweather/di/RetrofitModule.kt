@@ -61,7 +61,7 @@ class RetrofitModule {
             .Builder()
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .baseUrl(BuildConfig.WEATHERBIT_URL)
+            .baseUrl(baseUrl)
             .build()
     }
 
@@ -74,5 +74,7 @@ class RetrofitModule {
     companion object {
         const val KEY_QUERY_PARAM = "key"
         const val LANG_QUERY_PARAM = "lang"
+
+        var baseUrl = BuildConfig.WEATHERBIT_URL
     }
 }

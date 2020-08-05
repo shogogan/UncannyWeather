@@ -6,7 +6,7 @@ import br.com.shogogan.uncannyweather.domain.weather.models.LocationModel
 sealed class WeatherForecastResult {
     object InitialResult : WeatherForecastResult()
     object InFlight : WeatherForecastResult()
-    object Nothing : WeatherForecastResult()
+    object Abort : WeatherForecastResult()
     object GoBackResult : WeatherForecastResult()
     data class FetchResult(val locationForecast: LocationModel) : WeatherForecastResult()
     data class Error(val error: String?, @StringRes val errorId: Int?) : WeatherForecastResult()

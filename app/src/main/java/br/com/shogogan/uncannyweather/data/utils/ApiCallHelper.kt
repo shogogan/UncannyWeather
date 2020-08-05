@@ -16,7 +16,7 @@ suspend fun <T> apiCall(
     } catch (e1: HttpException) {
         when (e1.code()) {
             500 -> ResultWrapper.Error.Server
-            else -> ResultWrapper.Error.Generic(e1.code(), e1.message())
+            else -> ResultWrapper.Error.Generic(e1.message())
         }
     } catch (e: CancellationException) {
         ResultWrapper.Abort

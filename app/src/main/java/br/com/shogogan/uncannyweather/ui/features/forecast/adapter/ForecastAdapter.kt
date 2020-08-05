@@ -1,5 +1,6 @@
 package br.com.shogogan.uncannyweather.ui.features.forecast.adapter
 
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import br.com.shogogan.uncannyweather.databinding.RowForecastBinding
 import br.com.shogogan.uncannyweather.domain.weather.models.ForecastModel
 import br.com.shogogan.uncannyweather.ui.utils.UpdatableAdapter
 import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>(),
     UpdatableAdapter<ForecastModel> {
@@ -35,7 +37,10 @@ class ForecastAdapter : RecyclerView.Adapter<ForecastAdapter.ViewHolder>(),
 
     inner class ViewHolder(private val binding: RowForecastBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(forecastModel: ForecastModel) {
-            binding.textView.text = forecastModel.weather.description
+            binding.tvWeatherDesc.text = forecastModel.weather.description
+            binding.tvMinTemp.text = itemView.context.getString(R.string.temp_degrees, forecastModel.minTemperature)
+            binding.tvMaxTemp.text = itemView.context.getString(R.string.temp_degrees, forecastModel.maxTemperature)
+            binding.tvDate.text = DateFormat.getDateFormat(itemView.context).format(forecastModel.datetime)
             setWeatherIcon(forecastModel.weather.icon)
         }
 

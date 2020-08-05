@@ -3,6 +3,7 @@ package br.com.shogogan.uncannyweather.domain.weather
 import br.com.shogogan.uncannyweather.R
 import br.com.shogogan.uncannyweather.data.utils.ResultWrapper
 import br.com.shogogan.uncannyweather.data.weather.ForecastRepository
+import br.com.shogogan.uncannyweather.ui.utils.SimpleIdlingResource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,6 +17,7 @@ class DailyForecastUseCaseImpl @Inject constructor(
         countryName: String
     ): Flow<DailyForecastResponse> =
         flow {
+            SimpleIdlingResource.increment()
             emit(DailyForecastResponse.InFlight)
 
             val response =
@@ -30,5 +32,6 @@ class DailyForecastUseCaseImpl @Inject constructor(
                 }
 
             emit(response)
+            SimpleIdlingResource.decrement()
         }
 }

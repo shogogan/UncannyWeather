@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.com.shogogan.uncannyweather.R
 import br.com.shogogan.uncannyweather.databinding.FragmentResultBinding
 import br.com.shogogan.uncannyweather.ui.features.forecast.adapter.ForecastAdapter
@@ -46,6 +49,10 @@ class ResultFragment : Fragment() {
         binding.vm = vm
 
         binding.rvForecast.adapter = adapter
+
+        binding.rvForecast.addItemDecoration(
+            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+        )
 
         vm.state.observe(viewLifecycleOwner, Observer {
             if(it.locationModel == null){
